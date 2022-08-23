@@ -6,7 +6,8 @@ import pandas as pd
 
 pygame.init()
 
-#ser = serial.Serial('/dev/pts/3',9600,timeout=0)
+#串口
+ser = serial.Serial('com1',9600,timeout=0)
 
 
 #输入患者信息
@@ -94,6 +95,7 @@ def block(block_num):
     while not START:
         for ev_START in pygame.event.get():
             if ev_START.type == FINGERUP:
+                ser.write("F1".encode())
                 START = True
                 TIME_BEGIN = time.get_ticks()
                 print("BEGIN_BLOCK")
@@ -141,11 +143,9 @@ def block(block_num):
         CORRECT = 0
         DELAY = 0
 
-        #pygame.event.clear()
         while not TOUCH_DOWN_EFFECT:
             clock.tick(60)
             TIME_NOW = pygame.time.get_ticks()
-            #print(TIME_NOW)
             STATUS = "CUUUENT_BUTTON_UNTOUCH"
             POINT_X = -1
             POINT_Y = -1
@@ -254,6 +254,7 @@ def block(block_num):
 #writer.writerow(["Blook1"])
 
 block("block1")
+ser.write("F2".encode())
 text_msg("松开手指，休息一下", (SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.time.wait(3000)
 
@@ -273,5 +274,5 @@ text_msg("结束", (SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.time.wait(3000)
 '''
 data_file.close()
-
+ser.close()
 sys.exit()
