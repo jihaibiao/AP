@@ -7,7 +7,7 @@ import pandas as pd
 pygame.init()
 
 #串口
-ser = serial.Serial('com1',9600,timeout=0)
+ser = serial.Serial("COM3",9600,timeout=0.5)
 
 
 #输入患者信息
@@ -166,6 +166,7 @@ def block(block_num):
                         POINT_X = ev_DOWN.x * SCREEN_WIDTH
                         POINT_Y = ev_DOWN.y * SCREEN_HEIGHT
                         TIME_TOUCH_DOWN_FIRST = time.get_ticks()
+                        ser.write("F3".encode())
                         print("finger down")
                         PASS_1S = False
                         while not PASS_1S:
