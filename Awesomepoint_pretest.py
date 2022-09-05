@@ -128,7 +128,7 @@ def block(block_num):
         #writer.writerow(["",TIME_BEGIN_TRAIL, "BEGIN_TRAIL_UNTOUCH", "-1", "-1"])
 
         if TRAIL > 1:                                                            #  current target 出现在前一次，的时间
-            TIME_CURRENT_BUTTON_APPEAR = TIME_DOWN_LASTTRAIL + 1
+            TIME_CURRENT_BUTTON_APPEAR = TIME_DOWN_LASTTRAIL + 1000
         else:
             TIME_CURRENT_BUTTON_APPEAR = TIME_BEGIN_TRAIL
 
